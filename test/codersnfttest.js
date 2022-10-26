@@ -9,7 +9,6 @@ describe("Coders DAO", () =>{
     let CodersNFTContract, deployer, user1, user2
     const whiteListPrice = toWeiStr(1)
 
-    const SAMPLE_URI = "SAMPLEURI"
 
     beforeEach(async () =>{
         const codersNftFactory = await ethers.getContractFactory("CodersNFT")
@@ -58,7 +57,7 @@ describe("Coders DAO", () =>{
             beforeEach(async () =>{
                 initialBalance = await ethers.provider.getBalance(deployer.address)
                 // initialBalance = fromWei(initialBalance)
-                await CodersNFTContract.connect(user1).whitelistMint(user1.address, SAMPLE_URI, {value: whiteListPrice});
+                await CodersNFTContract.connect(user1).whitelistMint(user1.address, {value: whiteListPrice});
             })
             it("checks the token owner", async () =>{
                 expect(await CodersNFTContract.balanceOf(user1.address)).to.equal(1)
@@ -77,9 +76,12 @@ describe("Coders DAO", () =>{
 
             })
             it("checks the whitelist mint limit fail case", async () =>{
-                await CodersNFTContract.connect(user1).whitelistMint(user1.address, SAMPLE_URI, {value: whiteListPrice});
-                await CodersNFTContract.connect(user1).whitelistMint(user1.address, SAMPLE_URI, {value: whiteListPrice});
-                await expect(CodersNFTContract.connect(user1).whitelistMint(user1.address, SAMPLE_URI, {value: whiteListPrice})).to.be.reverted;
+                await CodersNFTContract.connect(user1).whitelistMint(user1.address, {value: whiteListPrice});
+                await CodersNFTContract.connect(user1).whitelistMint(user1.address, {value: whiteListPrice});
+                await expect(CodersNFTContract.connect(user1).whitelistMint(user1.address, {value: whiteListPrice})).to.be.reverted;
+            })
+            it("checks the token uri", async () =>{
+                expect(await CodersNFTContract.tokenURI(1)).to.equal("ipfs/1.json")
             })
         })
         

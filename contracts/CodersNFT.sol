@@ -15,6 +15,8 @@ contract CodersNFT is ERC721, ERC721URIStorage {
 
     uint256 public mintPrice;
 
+    string private baseURI = "ipfs/";
+
     // white list
     address[] public whitelistAddresses;
     uint256 public whitelistMintLimit;
@@ -53,25 +55,26 @@ contract CodersNFT is ERC721, ERC721URIStorage {
         whitelistMintPrice = newWhitelistPrice;
     }
 
-    function whitelistMint(address to, string memory uri) payable public onWhitelist {
+    function whitelistMint(address to) payable public onWhitelist {
         require(msg.value >= whitelistMintPrice, "Please pay full minting fee");
         require(_tokenIdCounter.current() < whitelistMintLimit, "max whitelist nfts minted");
 
         // transfer mint price to admin
         admin.transfer(msg.value);
 
+
         //increment token id
         _tokenIdCounter.increment();
         uint256 tokenId = _tokenIdCounter.current();
 
+        string memory newTokenURI = string(abi.encodePacked(baseURI, Strings.toString(tokenId), '.json'));
         //mint token
         _safeMint(to, tokenId);
 
         // set token uri
-        _setTokenURI(tokenId, uri);
+        _setTokenURI(tokenId, newTokenURI);
     }
     
-
 
 
 
