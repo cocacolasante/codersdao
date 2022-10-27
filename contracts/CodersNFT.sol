@@ -14,6 +14,9 @@ contract CodersNFT is ERC721, ERC721URIStorage {
     address payable public admin;
 
     uint256 public mintPrice;
+    uint public mintLimit;
+
+    bool public isContractLive;
 
     string private baseURI = "ipfs/";
 
@@ -22,6 +25,7 @@ contract CodersNFT is ERC721, ERC721URIStorage {
     uint256 public whitelistMintLimit;
     mapping(address=>bool) public isOnWhitelist;
     uint public whitelistMintPrice;
+    bool public isWLMintOn = true;
 
     // modifiers
     modifier onlyAdmin {
@@ -31,6 +35,15 @@ contract CodersNFT is ERC721, ERC721URIStorage {
 
     modifier onWhitelist{
         require(isOnWhitelist[msg.sender] == true, "not on whitelist");
+        _;
+    }
+    modifier WLMintUnpaused{
+        require(isWLMintOn == true, "whitelist minting is not live");
+        _;
+    }
+
+    modifier liveContract{
+        require(isContractLive == true, "contract is not live yet");
         _;
     }
 
@@ -50,12 +63,20 @@ contract CodersNFT is ERC721, ERC721URIStorage {
         whitelistMintLimit = newMintLimit;
     }
 
+    function turnWLMintOn() public onlyAdmin{
+        isWLMintOn = true;
+    }
+
+    function turnWLMintOff() public onlyAdmin{
+        isWLMintOn = false;
+    }
+
 
     function setWhitelistPrice(uint256 newWhitelistPrice) public onlyAdmin{
         whitelistMintPrice = newWhitelistPrice;
     }
 
-    function whitelistMint(address to) payable public onWhitelist {
+    function whitelistMint(address to) payable public onWhitelist WLMintUnpaused {
         require(msg.value >= whitelistMintPrice, "Please pay full minting fee");
         require(_tokenIdCounter.current() < whitelistMintLimit, "max whitelist nfts minted");
 
@@ -77,13 +98,56 @@ contract CodersNFT is ERC721, ERC721URIStorage {
     
 
 
+    // regular mint functions
+    function mint(address to) payable public liveContract {
+        require(msg.value >= mintPrice, "Please pay full minting fee");
+        require(_tokenIdCounter.current() < mintLimit, "max nfts minted");
+
+        // transfer mint price to admin
+        admin.transfer(msg.value);
 
 
+        //increment token id
+        _tokenIdCounter.increment();
+        uint256 tokenId = _tokenIdCounter.current();
+
+        string memory newTokenURI = string(abi.encodePacked(baseURI, Strings.toString(tokenId), '.json'));
+        //mint token
+        _safeMint(to, tokenId);
+
+        // set token uri
+        _setTokenURI(tokenId, newTokenURI);
+    }
+
+
+    function setMintLimit(uint256 newMintLimit) public onlyAdmin {
+        mintLimit = newMintLimit;
+    }
+
+    function unpauseContract() public onlyAdmin{
+        isContractLive = true;
+    }
+
+    function pauseContract() public onlyAdmin{
+        isContractLive = false;
+    }
+
+
+    function setMintPrice(uint256 newWhitelistPrice) public onlyAdmin{
+        mintPrice = newWhitelistPrice;
+    }
 
     // overrides required by solidity
 
-    function _burn(uint256 tokenId) internal override(ERC721, ERC721URIStorage) {
+    function _burn(uint256 tokenId) internal override(ERC721, ERC721URIStorage) liveContract {
         super._burn(tokenId);
+    }
+
+    // burn function
+    function burn(uint256 tokenId) external {
+        address owner = ERC721.ownerOf(tokenId);
+        require(owner == msg.sender, "not owner of token");
+        _burn(tokenId);
     }
 
      function tokenURI(uint256 tokenId)

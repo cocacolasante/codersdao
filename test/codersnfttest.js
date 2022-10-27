@@ -80,10 +80,56 @@ describe("Coders DAO", () =>{
                 await CodersNFTContract.connect(user1).whitelistMint(user1.address, {value: whiteListPrice});
                 await expect(CodersNFTContract.connect(user1).whitelistMint(user1.address, {value: whiteListPrice})).to.be.reverted;
             })
+            it("checks the whitelist pause modifier", async ()=>{
+                await CodersNFTContract.connect(deployer).turnWLMintOff()
+                await expect(CodersNFTContract.connect(user1).whitelistMint(user1.address, {value: whiteListPrice})).to.be.reverted
+            })
             it("checks the token uri", async () =>{
                 expect(await CodersNFTContract.tokenURI(1)).to.equal("ipfs/1.json")
             })
+            
         })
+
         
+    })
+    describe("minting functions and burn function", () =>{
+        let initialBalance
+        beforeEach(async () =>{
+            await CodersNFTContract.connect(deployer).setMintLimit(10)
+            await CodersNFTContract.connect(deployer).setMintPrice(whiteListPrice)
+            await CodersNFTContract.connect(deployer).unpauseContract()
+            initialBalance = await ethers.provider.getBalance(deployer.address)
+            await CodersNFTContract.connect(user2).mint(user2.address, {value: whiteListPrice})
+            await CodersNFTContract.connect(user2).mint(user2.address, {value: whiteListPrice})
+            await CodersNFTContract.connect(user2).mint(user2.address, {value: whiteListPrice})
+        })
+        it("checks the mint price", async () =>{
+            expect(await CodersNFTContract.mintPrice()).to.equal(whiteListPrice)
+        })
+        it("checks the mint limit", async () =>{
+            expect(await CodersNFTContract.mintLimit()).to.equal(10)
+        })
+        it("checks the token count", async () =>{
+            expect(await CodersNFTContract._tokenIdCounter()).to.equal(3)
+        })
+        it("checks the token uri", async () =>{
+            expect(await CodersNFTContract.tokenURI(3)).to.equal("ipfs/3.json")
+        })
+        it("checks the admin received the minting fee", async () =>{
+            // eslint-disable-next-line no-undef
+            initialBalance = BigInt(initialBalance)
+
+            // eslint-disable-next-line no-undef
+            let whitelistPriceInt  = BigInt(1000000000000000000)
+
+            expect(await ethers.provider.getBalance(deployer.address)).to.equal(initialBalance + (whitelistPriceInt+whitelistPriceInt+whitelistPriceInt))
+
+        })
+        it("checks the burn function", async () =>{
+            await CodersNFTContract.connect(user2).burn(2)
+            expect(await CodersNFTContract.balanceOf(user2.address)).to.equal(2)
+        })
+
+
     })
 })
