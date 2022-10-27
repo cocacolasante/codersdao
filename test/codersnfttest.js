@@ -130,6 +130,27 @@ describe("Coders DAO", () =>{
             expect(await CodersNFTContract.balanceOf(user2.address)).to.equal(2)
         })
 
+        describe("ERC20 Token", () =>{
+            let CodersCrypto
+            beforeEach(async ()=>{
+                const CryptoContractFactory = await ethers.getContractFactory("CodersCrypto")
+                CodersCrypto = await CryptoContractFactory.deploy()
+                await CodersCrypto.deployed()
+
+                // console.log(`Contract deployed to ${CodersCrypto.address}`)
+            })
+            it("checks the token name", async () =>{
+                expect(await CodersCrypto.name()).to.equal("Coders Crypto")
+            })
+            it("checks the token symbol", async () =>{
+                expect(await CodersCrypto.symbol()).to.equal("CC")
+            })
+            it("checks the admin and contract deployer", async () =>{
+                expect(await CodersCrypto.admin()).to.equal(deployer.address)
+                expect(await CodersCrypto.contractDeployer()).to.equal(deployer.address)
+            })
+        })
+
 
     })
 })
