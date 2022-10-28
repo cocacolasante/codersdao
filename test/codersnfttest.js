@@ -149,8 +149,38 @@ describe("Coders DAO", () =>{
                 expect(await CodersCrypto.admin()).to.equal(deployer.address)
                 expect(await CodersCrypto.contractDeployer()).to.equal(deployer.address)
             })
-        })
+            it("checks the change admin function", async () =>{
+                await CodersCrypto.connect(deployer).changeAdmin(user1.address)
+                expect(await CodersCrypto.admin()).to.equal(user1.address)
+            })
+            describe("Staking contract", async () =>{
+                let StakingContract
+                beforeEach(async ()=>{
+                    const stakingContractFactory = await ethers.getContractFactory("StakingContract")
+                    StakingContract = await stakingContractFactory.deploy()
+                    await StakingContract.deployed()
 
+                    // console.log(`Staking contract deployed to ${StakingContract.address}`)
+                })
+                it("checks the admin", async() =>{
+                    expect(await StakingContract.admin()).to.equal(deployer.address)
+                })
+                it("checks the nft contract was added to array", async () =>{
+                    await StakingContract.connect(deployer).addNftContract(CodersNFTContract.address)
+                    expect(await StakingContract.stakingNFTs(0)).to.equal(CodersNFTContract.address)
+                    
+                })
+                it("checks the rewards token", async () =>{
+                    await StakingContract.connect(deployer).setRewardsToken(CodersCrypto.address)
+                    expect(await StakingContract.rewardsToken()).to.equal(CodersCrypto.address)
+                })
+                it("checks the fail case addnft, addrewards", async () =>{
+                    await expect(StakingContract.connect(user2).setRewardsToken(CodersCrypto.address)).to.be.reverted
+                    await expect(StakingContract.connect(user2).addNftContract(CodersNFTContract.address)).to.be.reverted
+
+                })
+            })
+        })
 
     })
 })
