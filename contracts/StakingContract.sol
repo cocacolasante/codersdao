@@ -24,12 +24,14 @@ contract StakingContract{
 
     // mapping of address to stake info
     mapping(address => StakeInfo) public usersStakes;
+    //mapping of address to bool showing they have staked or not
+    mapping(address=> bool) public hasStake;
 
     struct StakeInfo{
         uint256 startTime;
         uint256 endTime;        
         uint256 tokenId; 
-        uint256 amountClaimed; 
+        uint256 amountEarned; 
     }
 
     event Staked(address indexed staker, uint indexed tokenId);
@@ -59,9 +61,14 @@ contract StakingContract{
         rewardRate = newRate;
     }
 
-     // staking function - duration needs to convert from days to seconds
+
+
+
+
+    // staking function - duration needs to convert from days to seconds
     function stakeNFT(uint tokenId, uint duration) external {
         require(stakingNFT.ownerOf(tokenId) == msg.sender, "not owner of token");
+
         // conversion from days to seconds
         uint convertedDuration = duration * 24 * 60 * 60;
 
@@ -72,6 +79,7 @@ contract StakingContract{
             0
             );
         
+        hasStake[msg.sender] = true;
 
         stakingNFT.transferFrom(msg.sender, address(this), tokenId);
 
@@ -79,6 +87,17 @@ contract StakingContract{
     }
 
     
+    // calculate rewards
+    function calculateRewards() internal view {
+        require(hasStake[msg.sender] == true, "do not have any nfts staked");
+        StakeInfo memory currentStake = usersStakes[msg.sender];
+        require(currentStake.endTime < block.timestamp, "stake is not over yet");
+
+        uint timeStaked = (currentStake.endTime - currentStake.startTime);
+        uint rewardsEarned = timeStaked * (rewardRate / 100);
+
+        currentStake.amountEarned = rewardsEarned; 
+    }
 
 
 }
