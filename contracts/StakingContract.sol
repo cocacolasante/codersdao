@@ -36,9 +36,16 @@ contract StakingContract{
 
     event Staked(address indexed staker, uint indexed tokenId);
 
+    event Claimed(address indexed claimer, uint amountClaimed);
+
 
     modifier onlyAdmin {
         require(msg.sender == admin, "only admin can call this feature");
+        _;
+    }
+
+    modifier hasStaked{
+        require(hasStake[msg.sender] == true, "No NFTs Staked");
         _;
     }
 
@@ -88,15 +95,27 @@ contract StakingContract{
 
     
     // calculate rewards
-    function calculateRewards() internal view {
+    function calculateRewards() public view {
         require(hasStake[msg.sender] == true, "do not have any nfts staked");
         StakeInfo memory currentStake = usersStakes[msg.sender];
-        require(currentStake.endTime < block.timestamp, "stake is not over yet");
+        
 
         uint timeStaked = (currentStake.endTime - currentStake.startTime);
         uint rewardsEarned = timeStaked * (rewardRate / 100);
 
         currentStake.amountEarned = rewardsEarned; 
+    }
+
+    function claimRewards() external hasStaked {
+        StakeInfo memory currentStake = usersStakes[msg.sender];
+        require(currentStake.endTime < block.timestamp, "stake is not over yet");
+
+        calculateRewards();
+
+        rewardsToken.transfer(msg.sender, currentStake.amountEarned);
+
+        emit Claimed(msg.sender, currentStake.amountEarned);
+
     }
 
 

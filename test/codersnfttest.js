@@ -1,9 +1,12 @@
+const { wait } = require("@testing-library/user-event/dist/utils");
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
 const toWeiStr = (num) => ethers.utils.parseEther(num.toString())
 const toWeiInt = (num) => ethers.utils.parseEther(num) 
 const fromWei = (num) => ethers.utils.formatEther(num)
+
+const delay = ms => new Promise(res => setTimeout(res, ms));
 
 describe("Coders DAO", () =>{
     let CodersNFTContract, deployer, user1, user2
@@ -165,9 +168,9 @@ describe("Coders DAO", () =>{
                 it("checks the admin", async() =>{
                     expect(await StakingContract.admin()).to.equal(deployer.address)
                 })
-                it("checks the nft contract was added to array", async () =>{
+                it("checks the nft contract was updated", async () =>{
                     await StakingContract.connect(deployer).addNftContract(CodersNFTContract.address)
-                    expect(await StakingContract.stakingNFTs(0)).to.equal(CodersNFTContract.address)
+                    expect(await StakingContract.stakingNFT()).to.equal(CodersNFTContract.address)
                     
                 })
                 it("checks the rewards token", async () =>{
@@ -177,6 +180,31 @@ describe("Coders DAO", () =>{
                 it("checks the fail case addnft, addrewards", async () =>{
                     await expect(StakingContract.connect(user2).setRewardsToken(CodersCrypto.address)).to.be.reverted
                     await expect(StakingContract.connect(user2).addNftContract(CodersNFTContract.address)).to.be.reverted
+
+                })
+                describe("Staking and Reward functions", async () =>{
+                    let stakeInfoStruct
+                    beforeEach(async () =>{
+                        await StakingContract.connect(deployer).addNftContract(CodersNFTContract.address)
+                        await StakingContract.connect(deployer).setRewardsToken(CodersCrypto.address)
+                        
+                        await CodersNFTContract.connect(user2).approve(StakingContract.address, 3)
+                        await StakingContract.connect(user2).stakeNFT(3, 10) 
+                        stakeInfoStruct = await StakingContract.usersStakes(user2.address)
+                    })
+                    it("checks the nft staking owner", async () =>{
+                        expect(await CodersNFTContract.ownerOf(3)).to.equal(StakingContract.address)
+                    })
+                    it("checks the stake info", async () =>{
+                        expect(stakeInfoStruct.tokenId).to.equal(3)
+                    })
+                    it("checks the reward rate", async () =>{
+                        await delay(5000)
+                        await StakingContract.connect(user2).calculateRewards()
+                        console.log(await StakingContract.usersStakes(user2.address))
+                        
+                        
+                    })
 
                 })
             })
