@@ -14,7 +14,7 @@ contract StakingContract{
     ERC20 public rewardsToken;
     address payable public admin;
 
-    uint public rewardRate = 1;
+    uint public rewardRate = 100;
 
     // uint256 public stakeDuration = 2592000; // 30 days (30 * 24 * 60 * 60)
 
@@ -100,7 +100,7 @@ contract StakingContract{
         StakeInfo memory currentStake = usersStakes[msg.sender];
         
 
-        uint timeStaked = (currentStake.endTime - currentStake.startTime);
+        uint timeStaked = (block.timestamp - currentStake.startTime);
         uint rewardsEarned = timeStaked * (rewardRate / 100);
 
         currentStake.amountEarned = rewardsEarned; 

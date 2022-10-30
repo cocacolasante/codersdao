@@ -199,9 +199,11 @@ describe("Coders DAO", () =>{
                         expect(stakeInfoStruct.tokenId).to.equal(3)
                     })
                     it("checks the reward rate", async () =>{
-                        await delay(5000)
+                        await delay(10000)
                         await StakingContract.connect(user2).calculateRewards()
-                        console.log(await StakingContract.usersStakes(user2.address))
+                        stakeInfoStruct = await StakingContract.usersStakes(user2.address)
+
+                        console.log(stakeInfoStruct.amountEarned.toString())
                         
                         
                     })
