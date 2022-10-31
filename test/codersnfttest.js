@@ -224,7 +224,37 @@ describe("Coders DAO", () =>{
                         expect(await CodersCrypto.balanceOf(user2.address)).to.equal(864)
                         await StakingContract.connect(user2).claimRewards(2)
                         expect(await CodersCrypto.balanceOf(user2.address)).to.equal(1728)
+                        
+                        stakeInfoStruct = await StakingContract.usersStakeByTokens(user2.address, 3)
+                        console.log(stakeInfoStruct.amountEarned)
+
+                        expect(stakeInfoStruct.amountEarned).to.equal(0)
                                    
+                    })
+                    it("checks the withdraw function", async () =>{
+                        await moveBlocks(1)
+                        await moveTime(86400)
+                        await StakingContract.connect(user2).calculateRewards(3)
+                        stakeInfoStruct = await StakingContract.usersStakeByTokens(user2.address, 3)
+
+                        console.log("amount earned", stakeInfoStruct.amountEarned.toString())
+                        
+                        await StakingContract.connect(user2).withdrawStake(3)
+                        expect(await CodersNFTContract.ownerOf(3)).to.equal(user2.address)
+                        expect(await CodersCrypto.balanceOf(user2.address)).to.equal(864)
+
+                    })
+                    it("checks the failcase", async () =>{
+                        await moveBlocks(1)
+                        await moveTime(86400)
+                        await StakingContract.connect(user2).calculateRewards(3)
+                        stakeInfoStruct = await StakingContract.usersStakeByTokens(user2.address, 3)
+
+                        console.log("amount earned", stakeInfoStruct.amountEarned.toString())
+                        
+                        await StakingContract.connect(user2).withdrawStake(3)
+                        await expect(StakingContract.connect(user2).withdrawStake(3)).to.be.reverted;
+                        await expect(StakingContract.claimRewards(3)).to.be.reverted
                     })
 
                 })

@@ -29,7 +29,7 @@ contract StakingContract{
     mapping(address=>mapping(uint => StakeInfo)) public usersStakeByTokens;
 
     //mapping of address to bool showing they have staked or not
-    mapping(address=> bool) public hasStake;
+    mapping(address=>mapping(uint=>bool)) public hasStake;
 
     struct StakeInfo{
         uint256 startTime;
@@ -49,8 +49,8 @@ contract StakingContract{
         _;
     }
 
-    modifier hasStaked{
-        require(hasStake[msg.sender] == true, "No NFTs Staked");
+    modifier hasStaked(uint tokenId){
+        require(hasStake[msg.sender][tokenId] == true, "No NFTs Staked");
         _;
     }
 
@@ -100,7 +100,7 @@ contract StakingContract{
             false
             );
         
-        hasStake[msg.sender] = true;
+        hasStake[msg.sender][tokenId] = true;
 
         stakingNFT.transferFrom(msg.sender, address(this), tokenId);
 
@@ -110,7 +110,7 @@ contract StakingContract{
     
     // calculate rewards
     function calculateRewards(uint tokenId) public returns(uint){
-        require(hasStake[msg.sender] == true, "do not have any nfts staked");
+        require(hasStake[msg.sender][tokenId] == true, "do not have any nfts staked");
         StakeInfo storage currentStake = usersStakeByTokens[msg.sender][tokenId];
         
 
@@ -122,21 +122,37 @@ contract StakingContract{
     }
 
 
-    function claimRewards(uint tokenId) external hasStaked {
+    function claimRewards(uint tokenId) public hasStaked(tokenId) {
         
         calculateRewards(tokenId);
         StakeInfo storage currentStake = usersStakeByTokens[msg.sender][tokenId];
 
-        
 
         rewardsToken.transfer(msg.sender, currentStake.amountEarned);
 
         currentStake.startTime = block.timestamp;
+        currentStake.amountEarned = 0;
 
         emit Claimed(msg.sender, currentStake.amountEarned);
 
     }
 
+
+    function withdrawStake(uint tokenId) external hasStaked(tokenId){
+        claimRewards(tokenId);
+        StakeInfo storage currentStake = usersStakeByTokens[msg.sender][tokenId];
+
+        stakingNFT.transferFrom(address(this), msg.sender, tokenId);
+
+        currentStake.stakeComplete = true;
+        currentStake.amountEarned = 0;
+        currentStake.endTime = block.timestamp;
+
+        hasStake[msg.sender][tokenId] = false;
+                
+
+
+    }
     
 
 
