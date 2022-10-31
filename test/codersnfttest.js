@@ -1,6 +1,8 @@
 const { wait } = require("@testing-library/user-event/dist/utils");
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
+const {moveTime} = require("../testing-utils/move-time")
+const { moveBlocks } = require("../testing-utils/move-block")
 
 const toWeiStr = (num) => ethers.utils.parseEther(num.toString())
 const toWeiInt = (num) => ethers.utils.parseEther(num) 
@@ -189,7 +191,7 @@ describe("Coders DAO", () =>{
                         await StakingContract.connect(deployer).setRewardsToken(CodersCrypto.address)
                         
                         await CodersNFTContract.connect(user2).approve(StakingContract.address, 3)
-                        await StakingContract.connect(user2).stakeNFT(3, 10) 
+                        await StakingContract.connect(user2).stakeNFT(3, 1) 
                         stakeInfoStruct = await StakingContract.usersStakes(user2.address)
                     })
                     it("checks the nft staking owner", async () =>{
@@ -199,7 +201,8 @@ describe("Coders DAO", () =>{
                         expect(stakeInfoStruct.tokenId).to.equal(3)
                     })
                     it("checks the reward rate", async () =>{
-                        await delay(10000)
+                        await moveBlocks(1)
+                        await moveTime(86400)
                         await StakingContract.connect(user2).calculateRewards()
                         stakeInfoStruct = await StakingContract.usersStakes(user2.address)
 

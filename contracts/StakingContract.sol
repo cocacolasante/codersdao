@@ -95,12 +95,13 @@ contract StakingContract{
 
     
     // calculate rewards
-    function calculateRewards() public view {
+    function calculateRewards() public {
         require(hasStake[msg.sender] == true, "do not have any nfts staked");
-        StakeInfo memory currentStake = usersStakes[msg.sender];
+        StakeInfo storage currentStake = usersStakes[msg.sender];
         
 
         uint timeStaked = (block.timestamp - currentStake.startTime);
+
         uint rewardsEarned = timeStaked * (rewardRate / 100);
 
         currentStake.amountEarned = rewardsEarned; 
