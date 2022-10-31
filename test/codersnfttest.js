@@ -10,6 +10,9 @@ const fromWei = (num) => ethers.utils.formatEther(num)
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
+// eslint-disable-next-line no-undef
+const halfSupply = (BigInt(10000000000000000000000000) / BigInt(2))
+
 describe("Coders DAO", () =>{
     let CodersNFTContract, deployer, user1, user2
     const whiteListPrice = toWeiStr(1)
@@ -193,6 +196,9 @@ describe("Coders DAO", () =>{
                         await CodersNFTContract.connect(user2).approve(StakingContract.address, 3)
                         await StakingContract.connect(user2).stakeNFT(3, 1) 
                         stakeInfoStruct = await StakingContract.usersStakes(user2.address)
+
+                        await CodersCrypto.connect(deployer).mint(StakingContract.address, halfSupply)
+
                     })
                     it("checks the nft staking owner", async () =>{
                         expect(await CodersNFTContract.ownerOf(3)).to.equal(StakingContract.address)
@@ -207,16 +213,10 @@ describe("Coders DAO", () =>{
                         stakeInfoStruct = await StakingContract.usersStakes(user2.address)
 
                         console.log(stakeInfoStruct.amountEarned.toString())
-
-                        // await CodersCrypto.transfer(user2.address, 1)
                         
-                        console.log(await CodersCrypto.totalSupply())
-                        // console.log(await CodersCrypto.balanceOf(CodersCrypto.address))
-
-                        await CodersCrypto.approve(user2.address, stakeInfoStruct.amountEarned)
                         await StakingContract.connect(user2).claimRewards()
                         // console.log(await CodersCrypto.balanceOf(CodersCrypto.address))
-                        console.log(await CodersCrypto.balanceOf(user2.address))
+                        expect(await CodersCrypto.balanceOf(user2.address)).to.equal(864)
                         
                         
                     })

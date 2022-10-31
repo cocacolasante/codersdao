@@ -117,7 +117,7 @@ contract StakingContract{
         console.log(currentStake.amountEarned);
         
 
-        rewardsToken.transferFrom(address(rewardsToken), msg.sender, currentStake.amountEarned);
+        rewardsToken.transfer(msg.sender, currentStake.amountEarned);
 
         currentStake.startTime = block.timestamp;
 

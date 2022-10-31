@@ -27,8 +27,8 @@ contract CodersCrypto is ERC20, ERC20Burnable, Ownable {
         contractDeployer = payable(msg.sender);
         admin = msg.sender;
         _totalSupply = maxSupply;
-        uint halfSupply = maxSupply / 2;
-        mint(address(this), halfSupply);
+        // uint halfSupply = maxSupply / 2;
+        // mint(address(this), halfSupply);
        
     }
 
@@ -52,5 +52,6 @@ contract CodersCrypto is ERC20, ERC20Burnable, Ownable {
     function returnCurrentSupply() external view returns(uint){
         return currentCount;
     }
+
 
 }
