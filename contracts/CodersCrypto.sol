@@ -6,6 +6,8 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
+import "./StakingContract.sol";
+
 import "hardhat/console.sol";
 
 contract CodersCrypto is ERC20, ERC20Burnable, Ownable {
@@ -13,6 +15,7 @@ contract CodersCrypto is ERC20, ERC20Burnable, Ownable {
     uint public currentCount;
     address payable public immutable contractDeployer;
     address public admin;
+    address public stakingContract;
 
     modifier onlyAdmin{
         require(msg.sender == admin, "only admin can call function");
@@ -23,6 +26,10 @@ contract CodersCrypto is ERC20, ERC20Burnable, Ownable {
     constructor() ERC20("Coders Crypto", "CC") {
         contractDeployer = payable(msg.sender);
         admin = msg.sender;
+        _totalSupply = maxSupply;
+        uint halfSupply = maxSupply / 2;
+        mint(address(this), halfSupply);
+       
     }
 
     function mint(address to, uint256 amount)  public onlyAdmin{
@@ -45,4 +52,5 @@ contract CodersCrypto is ERC20, ERC20Burnable, Ownable {
     function returnCurrentSupply() external view returns(uint){
         return currentCount;
     }
+
 }

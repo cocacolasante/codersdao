@@ -11,7 +11,7 @@ import "./CodersNFT.sol";
 
 contract StakingContract{
     ERC721 public stakingNFT;
-    ERC20 public rewardsToken;
+    IERC20 public rewardsToken;
     address payable public admin;
 
     uint public rewardRate = 100;
@@ -95,7 +95,7 @@ contract StakingContract{
 
     
     // calculate rewards
-    function calculateRewards() public {
+    function calculateRewards() public returns(uint){
         require(hasStake[msg.sender] == true, "do not have any nfts staked");
         StakeInfo storage currentStake = usersStakes[msg.sender];
         
@@ -104,16 +104,22 @@ contract StakingContract{
 
         uint rewardsEarned = timeStaked * (rewardRate / 100);
 
-        currentStake.amountEarned = rewardsEarned; 
+        return (currentStake.amountEarned = (rewardsEarned / 100)); 
     }
 
+
     function claimRewards() external hasStaked {
-        StakeInfo memory currentStake = usersStakes[msg.sender];
-        require(currentStake.endTime < block.timestamp, "stake is not over yet");
-
+        console.log(rewardsToken.balanceOf(address(rewardsToken)));
+        
         calculateRewards();
+        StakeInfo storage currentStake = usersStakes[msg.sender];
 
-        rewardsToken.transfer(msg.sender, currentStake.amountEarned);
+        console.log(currentStake.amountEarned);
+        
+
+        rewardsToken.transferFrom(address(rewardsToken), msg.sender, currentStake.amountEarned);
+
+        currentStake.startTime = block.timestamp;
 
         emit Claimed(msg.sender, currentStake.amountEarned);
 

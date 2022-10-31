@@ -207,6 +207,16 @@ describe("Coders DAO", () =>{
                         stakeInfoStruct = await StakingContract.usersStakes(user2.address)
 
                         console.log(stakeInfoStruct.amountEarned.toString())
+
+                        // await CodersCrypto.transfer(user2.address, 1)
+                        
+                        console.log(await CodersCrypto.totalSupply())
+                        // console.log(await CodersCrypto.balanceOf(CodersCrypto.address))
+
+                        await CodersCrypto.approve(user2.address, stakeInfoStruct.amountEarned)
+                        await StakingContract.connect(user2).claimRewards()
+                        // console.log(await CodersCrypto.balanceOf(CodersCrypto.address))
+                        console.log(await CodersCrypto.balanceOf(user2.address))
                         
                         
                     })
