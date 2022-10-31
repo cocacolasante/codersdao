@@ -24,6 +24,10 @@ contract StakingContract{
 
     // mapping of address to stake info
     mapping(address => StakeInfo) public usersStakes;
+
+    // address to token id to stake info
+    mapping(address=>mapping(uint => StakeInfo)) public usersStakeByTokens;
+
     //mapping of address to bool showing they have staked or not
     mapping(address=> bool) public hasStake;
 
@@ -32,6 +36,7 @@ contract StakingContract{
         uint256 endTime;        
         uint256 tokenId; 
         uint256 amountEarned; 
+        bool stakeComplete;
     }
 
     event Staked(address indexed staker, uint indexed tokenId);
@@ -83,7 +88,16 @@ contract StakingContract{
             block.timestamp,
             (block.timestamp + convertedDuration),
             tokenId,
-            0
+            0,
+            false
+            );
+
+        usersStakeByTokens[msg.sender][tokenId] = StakeInfo(
+            block.timestamp,
+            (block.timestamp + convertedDuration),
+            tokenId,
+            0,
+            false
             );
         
         hasStake[msg.sender] = true;
@@ -95,9 +109,9 @@ contract StakingContract{
 
     
     // calculate rewards
-    function calculateRewards() public returns(uint){
+    function calculateRewards(uint tokenId) public returns(uint){
         require(hasStake[msg.sender] == true, "do not have any nfts staked");
-        StakeInfo storage currentStake = usersStakes[msg.sender];
+        StakeInfo storage currentStake = usersStakeByTokens[msg.sender][tokenId];
         
 
         uint timeStaked = (block.timestamp - currentStake.startTime);
@@ -108,13 +122,11 @@ contract StakingContract{
     }
 
 
-    function claimRewards() external hasStaked {
-        console.log(rewardsToken.balanceOf(address(rewardsToken)));
+    function claimRewards(uint tokenId) external hasStaked {
         
-        calculateRewards();
-        StakeInfo storage currentStake = usersStakes[msg.sender];
+        calculateRewards(tokenId);
+        StakeInfo storage currentStake = usersStakeByTokens[msg.sender][tokenId];
 
-        console.log(currentStake.amountEarned);
         
 
         rewardsToken.transfer(msg.sender, currentStake.amountEarned);
@@ -124,6 +136,8 @@ contract StakingContract{
         emit Claimed(msg.sender, currentStake.amountEarned);
 
     }
+
+    
 
 
 }

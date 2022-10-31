@@ -188,15 +188,20 @@ describe("Coders DAO", () =>{
 
                 })
                 describe("Staking and Reward functions", async () =>{
-                    let stakeInfoStruct
+                    let stakeInfoStruct, stakingStruct2
                     beforeEach(async () =>{
                         await StakingContract.connect(deployer).addNftContract(CodersNFTContract.address)
                         await StakingContract.connect(deployer).setRewardsToken(CodersCrypto.address)
                         
                         await CodersNFTContract.connect(user2).approve(StakingContract.address, 3)
+                        await CodersNFTContract.connect(user2).approve(StakingContract.address, 2)
                         await StakingContract.connect(user2).stakeNFT(3, 1) 
-                        stakeInfoStruct = await StakingContract.usersStakes(user2.address)
+                        await StakingContract.connect(user2).stakeNFT(2, 1) 
 
+                        stakeInfoStruct = await StakingContract.usersStakeByTokens(user2.address, 3)
+                        stakingStruct2 = await StakingContract.usersStakeByTokens(user2.address, 2)
+
+                        // mint half of the rewards token supply to the staking contract
                         await CodersCrypto.connect(deployer).mint(StakingContract.address, halfSupply)
 
                     })
@@ -206,19 +211,20 @@ describe("Coders DAO", () =>{
                     it("checks the stake info", async () =>{
                         expect(stakeInfoStruct.tokenId).to.equal(3)
                     })
-                    it("checks the reward rate", async () =>{
+                    it("checks the reward rate and claim function", async () =>{
                         await moveBlocks(1)
                         await moveTime(86400)
-                        await StakingContract.connect(user2).calculateRewards()
-                        stakeInfoStruct = await StakingContract.usersStakes(user2.address)
+                        await StakingContract.connect(user2).calculateRewards(3)
+                        stakeInfoStruct = await StakingContract.usersStakeByTokens(user2.address, 3)
 
-                        console.log(stakeInfoStruct.amountEarned.toString())
+                        console.log("amount earned", stakeInfoStruct.amountEarned.toString())
                         
-                        await StakingContract.connect(user2).claimRewards()
-                        // console.log(await CodersCrypto.balanceOf(CodersCrypto.address))
+                        await StakingContract.connect(user2).claimRewards(3)
+
                         expect(await CodersCrypto.balanceOf(user2.address)).to.equal(864)
-                        
-                        
+                        await StakingContract.connect(user2).claimRewards(2)
+                        expect(await CodersCrypto.balanceOf(user2.address)).to.equal(1728)
+                                   
                     })
 
                 })
