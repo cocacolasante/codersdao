@@ -22,8 +22,6 @@ contract StakingContract{
     // mapping of rewards to tokens
     mapping(address=>uint) public usersRewards;
 
-    // mapping of address to stake info
-    mapping(address => StakeInfo) public usersStakes;
 
     // address to token id to stake info
     mapping(address=>mapping(uint => StakeInfo)) public usersStakeByTokens;
@@ -33,7 +31,6 @@ contract StakingContract{
 
     struct StakeInfo{
         uint256 startTime;
-        uint256 endTime;        
         uint256 tokenId; 
         uint256 amountEarned; 
         bool stakeComplete;
@@ -75,26 +72,13 @@ contract StakingContract{
 
 
 
-
-
     // staking function - duration needs to convert from days to seconds
-    function stakeNFT(uint tokenId, uint duration) external {
+    function stakeNFT(uint tokenId) external {
         require(stakingNFT.ownerOf(tokenId) == msg.sender, "not owner of token");
 
-        // conversion from days to seconds
-        uint convertedDuration = duration * 24 * 60 * 60;
-
-        usersStakes[msg.sender] = StakeInfo(
-            block.timestamp,
-            (block.timestamp + convertedDuration),
-            tokenId,
-            0,
-            false
-            );
 
         usersStakeByTokens[msg.sender][tokenId] = StakeInfo(
             block.timestamp,
-            (block.timestamp + convertedDuration),
             tokenId,
             0,
             false
@@ -141,16 +125,15 @@ contract StakingContract{
     function withdrawStake(uint tokenId) external hasStaked(tokenId){
         claimRewards(tokenId);
         StakeInfo storage currentStake = usersStakeByTokens[msg.sender][tokenId];
+        require(currentStake.stakeComplete == false, "not currently staking nft");
 
         stakingNFT.transferFrom(address(this), msg.sender, tokenId);
 
         currentStake.stakeComplete = true;
         currentStake.amountEarned = 0;
-        currentStake.endTime = block.timestamp;
 
         hasStake[msg.sender][tokenId] = false;
-                
-
+        
 
     }
     

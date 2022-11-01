@@ -195,8 +195,8 @@ describe("Coders DAO", () =>{
                         
                         await CodersNFTContract.connect(user2).approve(StakingContract.address, 3)
                         await CodersNFTContract.connect(user2).approve(StakingContract.address, 2)
-                        await StakingContract.connect(user2).stakeNFT(3, 1) 
-                        await StakingContract.connect(user2).stakeNFT(2, 1) 
+                        await StakingContract.connect(user2).stakeNFT(3) 
+                        await StakingContract.connect(user2).stakeNFT(2) 
 
                         stakeInfoStruct = await StakingContract.usersStakeByTokens(user2.address, 3)
                         stakingStruct2 = await StakingContract.usersStakeByTokens(user2.address, 2)
@@ -255,6 +255,22 @@ describe("Coders DAO", () =>{
                         await StakingContract.connect(user2).withdrawStake(3)
                         await expect(StakingContract.connect(user2).withdrawStake(3)).to.be.reverted;
                         await expect(StakingContract.claimRewards(3)).to.be.reverted
+                    })
+                    it("checks the nft can be restaked", async () =>{
+                        await moveBlocks(1)
+                        await moveTime(86400)
+                        await StakingContract.connect(user2).calculateRewards(3)
+                        stakeInfoStruct = await StakingContract.usersStakeByTokens(user2.address, 3)
+
+                        console.log("amount earned", stakeInfoStruct.amountEarned.toString())
+                        
+                        await StakingContract.connect(user2).withdrawStake(3)
+
+                        await CodersNFTContract.connect(user2).approve(StakingContract.address, 3)
+                        await StakingContract.connect(user2).stakeNFT(3) 
+                        
+                        stakeInfoStruct = await StakingContract.usersStakeByTokens(user2.address, 3)
+                        expect(stakeInfoStruct.stakeComplete).to.equal(false)
                     })
 
                 })
