@@ -276,6 +276,61 @@ describe("Coders DAO", () =>{
                 })
             })
         })
+        describe("Coder DAO Contract", async () =>{
+            let DAOContract
+            beforeEach(async () =>{
+                const daoContractFactory = await ethers.getContractFactory("CodersDAO")
+                DAOContract = await daoContractFactory.deploy()
+                await DAOContract.deployed()
 
+
+            })
+            it("checks the admin was set", async () =>{
+                expect(await DAOContract.admin()).to.equal(deployer.address)
+            })
+            it("checks the admin can be changed", async () =>{
+                await DAOContract.connect(deployer).setNewAdmin(user1.address)
+                expect(await DAOContract.admin()).to.equal(user1.address)
+            })
+            it("checks the fail case", async () =>{
+                await expect(DAOContract.connect(user2).setNewAdmin(user2.address)).to.be.reverted
+            })
+            // describe the dao proposal functions
+            describe("Proposal functions", async () =>{
+
+                let proposalStruct
+                beforeEach(async () =>{
+                    await DAOContract.connect(user1).createProposal("Build an NFT project")
+                    await DAOContract.connect(user2).voteForProposal(1)
+                    proposalStruct = await DAOContract.allProposals(1)
+
+                })
+                it("checks the proposal count", async () =>{
+                    expect(await DAOContract.proposalNumber()).to.equal(1)
+                })
+                it("checks the proposal struct", async () =>{
+                    expect(proposalStruct.proposer).to.equal(user1.address)
+                    expect(proposalStruct.propNumber).to.equal(1)
+                    expect(proposalStruct.description).to.equal("Build an NFT project")
+                })
+                it("checks the voting for function", async () =>{
+                    
+                    expect(proposalStruct.votesFor).to.equal(1)
+                })
+                it("checks other users can vote on it", async () =>{
+                    await DAOContract.connect(deployer).voteForProposal(1)
+                    proposalStruct = await DAOContract.allProposals(1)
+                    expect(proposalStruct.votesFor).to.equal(2)
+                })
+                it("checks the voting fail case", async () =>{
+                    await expect(DAOContract.connect(user2).voteForProposal(1)).to.be.reverted
+                })
+                it("checks the vote against function", async () =>{
+                    await DAOContract.connect(deployer).voteAgainstProposal(1)
+                    proposalStruct = await DAOContract.allProposals(1)
+                    expect(proposalStruct.votesAgainst).to.equal(1)
+                })
+            })
+        })
     })
 })
