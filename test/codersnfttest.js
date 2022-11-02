@@ -14,7 +14,7 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
 const halfSupply = (BigInt(10000000000000000000000000) / BigInt(2))
 
 describe("Coders DAO", () =>{
-    let CodersNFTContract, deployer, user1, user2
+    let CodersNFTContract, deployer, user1, user2, user3
     const whiteListPrice = toWeiStr(1)
 
 
@@ -30,6 +30,7 @@ describe("Coders DAO", () =>{
         deployer = accounts[0]
         user1 = accounts[1]
         user2 = accounts[2]
+        user3 = accounts[3]
     })
     it("checks the contract name and symbol", async () =>{
         expect(await CodersNFTContract.name()).to.equal("Coders DAO NFT")
@@ -300,6 +301,9 @@ describe("Coders DAO", () =>{
 
                 let proposalStruct
                 beforeEach(async () =>{
+                    await DAOContract.connect(deployer).setupStakeholder(user1.address)
+                    await DAOContract.connect(deployer).setupStakeholder(user2.address)
+                    await DAOContract.connect(deployer).setupStakeholder(deployer.address)
                     await DAOContract.connect(user1).createProposal("Build an NFT project")
                     await DAOContract.connect(user2).voteForProposal(1)
                     proposalStruct = await DAOContract.allProposals(1)
@@ -329,6 +333,9 @@ describe("Coders DAO", () =>{
                     await DAOContract.connect(deployer).voteAgainstProposal(1)
                     proposalStruct = await DAOContract.allProposals(1)
                     expect(proposalStruct.votesAgainst).to.equal(1)
+                })
+                it("checks only stakeholders can vote fail case", async () =>{
+                    await expect(DAOContract.connect(user3).voteAgainstProposal(1)).to.be.reverted
                 })
             })
         })

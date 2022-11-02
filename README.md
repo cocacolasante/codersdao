@@ -1,13 +1,11 @@
-# Sample Hardhat Project
+TO DO
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
+add money aspect into prop struct
+create an escrow/job board type contract for active proposals pending completion !!! - using dao contract to automatically
+    create a job contract which holds active contributors working on the project, what the project is, due date/time frame
+    payment and distro of payment
 
-Try running some of the following tasks:
 
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.js
-```
+calculate vote
+send money to respective groups
+

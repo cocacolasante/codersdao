@@ -9,10 +9,11 @@ import "hardhat/console.sol";
 contract CodersDAO is ReentrancyGuard, AccessControl{
     address public admin;
     
-    bytes32 public constant CONTRIBUTOR_ROLE = keccak256("CONTRIBUTOR");
-    bytes32 public constant STAKEHOLDER_ROLE = keccak256("STAKEHOLDER");
+    address[] public stakeHolders;
+    mapping(address=>bool) public isStakeholder;
+    address[] public contributors;
+    mapping(address => bool) public isContributor;
 
-    address[] public currentContributors;
 
     uint public voteTimeMinimum = 1 weeks;
     uint public proposalNumber;
@@ -45,6 +46,16 @@ contract CodersDAO is ReentrancyGuard, AccessControl{
         _;
     }
 
+    modifier isActiveStakeholder{
+        require(isStakeholder[msg.sender] == true, "Not active stakeholder");
+        _;
+    }
+    
+    modifier isActiveContributor{
+        require(isContributor[msg.sender] == true, "Not active contributor");
+        _;
+    }
+
 
     constructor(){
         admin = msg.sender;
@@ -52,10 +63,16 @@ contract CodersDAO is ReentrancyGuard, AccessControl{
 
     // set up and remove role functions
 
-    function setupStakeholder(bytes32 role, address account) public {
-        if(!hasRole(STAKEHOLDER_ROLE, account)){
-            
-        }
+    function setupStakeholder(address account) public onlyAdmin{     
+        stakeHolders.push(account);
+        isStakeholder[account] = true;
+
+    }
+
+    function setupContributor(address account) public onlyAdmin{     
+        contributors.push(account);
+        isContributor[account] = true;
+
     }
     
 
@@ -64,7 +81,7 @@ contract CodersDAO is ReentrancyGuard, AccessControl{
 
     // proposal functions
 
-    function createProposal(string memory propDescription) public {
+    function createProposal(string memory propDescription) public isActiveStakeholder {
         // create a require statement for "has role"
         proposalNumber++;
 
@@ -85,7 +102,7 @@ contract CodersDAO is ReentrancyGuard, AccessControl{
     }
 
 
-    function voteForProposal(uint propNum) public {
+    function voteForProposal(uint propNum) public isActiveStakeholder {
         require(hasVotedForProp[msg.sender][propNum] == false, "Already voted");
 
         Proposal storage currentProp = allProposals[propNum];
@@ -96,7 +113,7 @@ contract CodersDAO is ReentrancyGuard, AccessControl{
 
     }
 
-    function voteAgainstProposal(uint propNum) public {
+    function voteAgainstProposal(uint propNum) public isActiveStakeholder {
         require(hasVotedForProp[msg.sender][propNum] == false, "Already voted");
         Proposal storage currentProp = allProposals[propNum];
 
