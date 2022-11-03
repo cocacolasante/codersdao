@@ -50,7 +50,7 @@ contract CodersDAO is ReentrancyGuard, AccessControl{
         require(isStakeholder[msg.sender] == true, "Not active stakeholder");
         _;
     }
-    
+
     modifier isActiveContributor{
         require(isContributor[msg.sender] == true, "Not active contributor");
         _;
@@ -123,6 +123,29 @@ contract CodersDAO is ReentrancyGuard, AccessControl{
 
 
     }
+
+    function calculateVotes(uint propNum) public onlyAdmin{
+        Proposal storage currentProp = allProposals[propNum];
+        require(block.timestamp < currentProp.endTime, "voting period not over yet");
+        uint forVotes = currentProp.votesFor;
+        uint againstVotes = currentProp.votesAgainst;
+
+        if(forVotes > againstVotes){
+            currentProp.passed = true;
+        } else{
+            currentProp.passed = false;
+        }
+    
+    }
+
+    // function createJob(uint propNum, uint paymentAmount, uint timeframe) public {
+    //     Proposal storage currentProp = allProposals[propNum];
+    //     require(msg.sender == currentProp.proposer || msg.sender == admin, "Not proposer or admin");
+    //     require(currentProp.passed == true, "Proposal did not pass" );
+
+    //     // logic to create job smart contract
+
+    // }
 
 
 
