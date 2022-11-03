@@ -24,7 +24,6 @@ describe("Job Smart Contract", async () =>{
         expect(await JobContract.leadDev()).to.equal(proposerUser.address)
         expect(await JobContract.jobNumber()).to.equal(1)
         expect(await JobContract.payout()).to.equal(10000)
-        expect(await JobContract.jobOpen()).to.equal(true);
     })
     it("checks the change lead function", async () =>{
         await JobContract.connect(proposerUser).changeLeadDev(leadDevUser.address)
@@ -48,6 +47,73 @@ describe("Job Smart Contract", async () =>{
             expect(allTask1.description).to.equal("create smart contract")
             
         })
+        it("checks the task completion function", async () =>{
+            await JobContract.connect(leadDevUser).assignTask(dev1.address, "create smart contract")
+            await JobContract.connect(leadDevUser).completeTask(1)
+            let job1task = await JobContract.allTasks(1);
+
+            expect(job1task.completed).to.equal(true)
+        })
+        it("checks the reassign task function", async () =>{
+            await JobContract.connect(leadDevUser).assignTask(dev1.address, "create smart contract")
+            let job1task
+            await JobContract.connect(leadDevUser).reassignTask(dev2.address, 1)
+            job1task = await JobContract.allTasks(1);
+            expect(job1task.dev).to.equal(dev2.address)
+
+        })
+        describe("Proposer functions", () => {
+            beforeEach(async () =>{
+                await JobContract.connect(leadDevUser).addDev(dev1.address)
+                await JobContract.connect(leadDevUser).addDev(dev2.address)
+            })
+            it("checks the deposit dev portion of funds function", async () =>{
+                await JobContract.connect(proposerUser).depositPaymentFromJob({value: 100})
+                expect(await JobContract.returnBalance()).to.equal(100)
+            })
+            
+            it("checks the job completed and money transferred to devs", async () =>{
+                await JobContract.connect(proposerUser).depositPaymentFromJob({value: 100})
+                let initialBalance = await ethers.provider.getBalance(dev1.address)
+                // eslint-disable-next-line no-undef
+                initialBalance = BigInt(initialBalance)
+
+                await JobContract.connect(proposerUser).completeJob()
+
+                expect(await JobContract.jobCompleted()).to.equal(true)
+
+                let currentBalance = await ethers.provider.getBalance(dev1.address)
+                // eslint-disable-next-line no-undef
+                currentBalance = BigInt(currentBalance);
+
+                // eslint-disable-next-line no-undef
+                expect(currentBalance).to.equal(initialBalance + BigInt(25))
+            
+            })
+            it("checks the money was sent to the proposer and lead dev", async () =>{
+                await JobContract.connect(proposerUser).depositPaymentFromJob({value: 100})
+                let initialBalance = await ethers.provider.getBalance(leadDevUser.address)
+                 // eslint-disable-next-line no-undef
+                 initialBalance = BigInt(initialBalance)
+
+                await JobContract.connect(proposerUser).completeJob()
+
+
+                let currentBalance = await ethers.provider.getBalance(leadDevUser.address)
+                // eslint-disable-next-line no-undef
+                currentBalance = BigInt(currentBalance);
+                
+                // eslint-disable-next-line no-undef
+                expect(currentBalance).to.equal(initialBalance + BigInt(25))
+
+            })
+            it("checks the closed job fail case", async () =>{
+                await JobContract.connect(proposerUser).completeJob()
+                await expect(JobContract.connect(leadDevUser).assignTask(dev1.address, "new task")).to.be.reverted
+
+            })
+        })
+
     })
     
 })

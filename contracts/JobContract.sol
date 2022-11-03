@@ -5,16 +5,17 @@ import "hardhat/console.sol";
 
 contract JobContract{
     uint public jobNumber;
-    bool public jobCompleted = false;
-    bool public jobOpen;
+    bool public jobCompleted;
 
-    address public proposer;
+    address payable public proposer;
     uint public payout;
     uint public maxCompletionDate;
     uint public taskNumber;
+
+    bool public fundsDeposited;
     
     
-    address public leadDev;
+    address payable public leadDev;
     address[] public devs;
 
     //mapping dev to task
@@ -38,28 +39,39 @@ contract JobContract{
         _;
     }
 
-    constructor(uint _jobNumber, address _proposer, uint _payout, uint _maxCompleteDate){
+    modifier onlyProposer{
+        require(msg.sender == proposer, "Only Job Proposer can call this function");
+        _;
+    }
+
+    modifier notCompleted{
+        require(jobCompleted == false, "Job is already completed");
+        _;
+    }
+
+    receive() external payable{}
+
+    constructor(uint _jobNumber, address  _proposer, uint _payout, uint _maxCompleteDate){
         jobNumber = _jobNumber;
-        proposer = _proposer;
+        proposer = payable(_proposer);
         payout = _payout;
         maxCompletionDate = block.timestamp + (_maxCompleteDate *24 *60 *60);
-        leadDev = _proposer;
-        jobOpen = true;
+        leadDev = payable(_proposer);
     }
 
     // setter functions
 
-    function addDev(address newDev) public onlyLeadDev {
+    function addDev(address newDev) public onlyLeadDev notCompleted {
         devs.push(newDev);
     }
 
-    function changeLeadDev(address newLead) public onlyLeadDev {
-        leadDev = newLead;
+    function changeLeadDev(address newLead) public onlyLeadDev notCompleted{
+        leadDev = payable(newLead);
     }
 
     // add task function
 
-    function assignTask(address devToAssign, string memory taskDesc) public onlyLeadDev{
+    function assignTask(address devToAssign, string memory taskDesc) public onlyLeadDev notCompleted{
         taskNumber++;
 
         Task memory newTask = Task(
@@ -75,4 +87,61 @@ contract JobContract{
 
 
     }
+
+    function completeTask(uint taskNum) public onlyLeadDev notCompleted{
+        Task storage currentTask = allTasks[taskNum];
+
+        currentTask.completed = true;
+
+    }
+
+    function reassignTask(address devToAssign, uint taskNum) public onlyLeadDev notCompleted{
+        Task storage currentTask = allTasks[taskNum];
+
+        devsTasks[currentTask.dev][taskNum] = devsTasks[devToAssign][taskNum];
+        
+        
+
+        currentTask.dev = devToAssign;
+
+    }
+
+
+    // proposers function
+
+    function completeJob() public onlyProposer {
+        jobCompleted = true;
+        uint amountToSend = address(this).balance / (devs.length + 2);
+
+        for(uint i; i < devs.length; i++){
+            payable(devs[i]).transfer(amountToSend);
+        }
+
+        proposer.transfer(amountToSend);
+
+        leadDev.transfer(amountToSend);
+    }
+
+    function reopenJob() public onlyProposer {
+        jobCompleted = false;
+    }
+
+    // deposit downpayment and payment for  dev team and proposer/lead dev
+    function depositPaymentFromJob() public payable {
+        
+        
+        payable(address(this)).transfer(msg.value);
+        fundsDeposited = true;
+
+    }
+    
+
+
+
+    // getter functions
+    function returnBalance() public view returns(uint){
+        return address(this).balance;
+
+    }
+
 }
