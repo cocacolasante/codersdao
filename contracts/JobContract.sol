@@ -13,6 +13,8 @@ contract JobContract{
     uint public taskNumber;
 
     bool public fundsDeposited;
+
+    address payable public DAOAddress;
     
     
     address payable public leadDev;
@@ -51,12 +53,13 @@ contract JobContract{
 
     receive() external payable{}
 
-    constructor(uint _jobNumber, address  _proposer, uint _payout, uint _maxCompleteDate){
+    constructor(uint _jobNumber, address  _proposer, uint _payout, uint _maxCompleteDate, address _daoAddress){
         jobNumber = _jobNumber;
         proposer = payable(_proposer);
         payout = _payout;
         maxCompletionDate = block.timestamp + (_maxCompleteDate *24 *60 *60);
         leadDev = payable(_proposer);
+        DAOAddress = payable(_daoAddress);
     }
 
     // setter functions
@@ -111,7 +114,8 @@ contract JobContract{
 
     function completeJob() public onlyProposer {
         jobCompleted = true;
-        uint amountToSend = address(this).balance / (devs.length + 2);
+        uint amountToSend = (address(this).balance / 2 )/ (devs.length + 2);
+        uint daoTransferAmount = address(this).balance / 2;
 
         for(uint i; i < devs.length; i++){
             payable(devs[i]).transfer(amountToSend);
@@ -120,6 +124,10 @@ contract JobContract{
         proposer.transfer(amountToSend);
 
         leadDev.transfer(amountToSend);
+
+
+        DAOAddress.transfer(daoTransferAmount);
+
     }
 
     function reopenJob() public onlyProposer {

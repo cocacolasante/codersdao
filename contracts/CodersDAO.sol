@@ -4,6 +4,8 @@ pragma solidity ^0.8.9;
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
+import "./JobContract.sol";
+
 import "hardhat/console.sol";
 
 contract CodersDAO is ReentrancyGuard, AccessControl{
@@ -17,6 +19,10 @@ contract CodersDAO is ReentrancyGuard, AccessControl{
 
     uint public voteTimeMinimum = 1 weeks;
     uint public proposalNumber;
+
+    // Job Smart Contract mapping
+
+    mapping(uint => JobContract) public jobsMap;
 
     mapping(address => mapping(uint => bool)) public hasVotedForProp;
 
@@ -60,6 +66,7 @@ contract CodersDAO is ReentrancyGuard, AccessControl{
     constructor(){
         admin = msg.sender;
     }
+    receive() external payable{}
 
     // set up and remove role functions
 
@@ -126,7 +133,7 @@ contract CodersDAO is ReentrancyGuard, AccessControl{
 
     function calculateVotes(uint propNum) public onlyAdmin{
         Proposal storage currentProp = allProposals[propNum];
-        require(block.timestamp < currentProp.endTime, "voting period not over yet");
+        // require(block.timestamp > currentProp.endTime, "voting period not over yet");
         uint forVotes = currentProp.votesFor;
         uint againstVotes = currentProp.votesAgainst;
 
@@ -138,14 +145,24 @@ contract CodersDAO is ReentrancyGuard, AccessControl{
     
     }
 
-    // function createJob(uint propNum, uint paymentAmount, uint timeframe) public {
-    //     Proposal storage currentProp = allProposals[propNum];
-    //     require(msg.sender == currentProp.proposer || msg.sender == admin, "Not proposer or admin");
-    //     require(currentProp.passed == true, "Proposal did not pass" );
+    function createJob(uint propNum, uint estPaymentAmount, uint timeframe) public {
+        Proposal storage currentProp = allProposals[propNum];
+        require(msg.sender == currentProp.proposer || msg.sender == admin, "Not proposer or admin");
+        require(currentProp.passed == true, "Proposal did not pass" );
 
-    //     // logic to create job smart contract
+        // logic to create job smart contract
+        JobContract newJob = new JobContract(
+            propNum,
+            currentProp.proposer,
+            estPaymentAmount,
+            timeframe,
+            address(this)
+        );
 
-    // }
+        jobsMap[propNum] = newJob;
+
+
+    }
 
 
 

@@ -1,5 +1,5 @@
 const { wait } = require("@testing-library/user-event/dist/utils");
-const { expect } = require("chai");
+const { expect, assert } = require("chai");
 const { ethers } = require("hardhat");
 const {moveTime} = require("../testing-utils/move-time")
 const { moveBlocks } = require("../testing-utils/move-block")
@@ -336,6 +336,22 @@ describe("Coders DAO", () =>{
                 })
                 it("checks only stakeholders can vote fail case", async () =>{
                     await expect(DAOContract.connect(user3).voteAgainstProposal(1)).to.be.reverted
+                })
+                it("checks the calculate vote function", async () =>{
+                    await DAOContract.connect(user1).voteForProposal(1)
+                    await DAOContract.connect(deployer).voteForProposal(1)
+                    await DAOContract.connect(deployer).calculateVotes(1)
+                    proposalStruct = await DAOContract.allProposals(1)
+                    expect(proposalStruct.passed).to.equal(true)
+                    
+                })
+                it("checks the create job function", async () =>{
+                    await DAOContract.connect(user1).voteForProposal(1)
+                    await DAOContract.connect(deployer).voteForProposal(1)
+                    await DAOContract.connect(deployer).calculateVotes(1)
+                    await DAOContract.connect(deployer).createJob(1, 100, 86400)
+                    assert(await DAOContract.jobsMap(1))
+
                 })
             })
         })

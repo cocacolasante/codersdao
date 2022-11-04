@@ -2,7 +2,7 @@ const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
 describe("Job Smart Contract", async () =>{
-    let JobContract, deployer, proposerUser, leadDevUser, dev1, dev2
+    let JobContract, deployer, proposerUser, leadDevUser, dev1, dev2, daoContract
     beforeEach(async () => {
         const accounts = await ethers.getSigners();
 
@@ -12,10 +12,14 @@ describe("Job Smart Contract", async () =>{
         dev1 = accounts[3]
         dev2 = accounts[4]
 
+        const daoContractFactory = await ethers.getContractFactory("CodersDAO")
+        daoContract = await daoContractFactory.deploy()
+        await daoContract.deployed()
 
         const jobContractFactory = await ethers.getContractFactory("JobContract")
-        JobContract = await jobContractFactory.deploy(1, proposerUser.address, 10000, 86400 )
+        JobContract = await jobContractFactory.deploy(1, proposerUser.address, 10000, 86400, daoContract.address )
         await JobContract.deployed()
+
 
         
     })
@@ -73,7 +77,7 @@ describe("Job Smart Contract", async () =>{
             })
             
             it("checks the job completed and money transferred to devs", async () =>{
-                await JobContract.connect(proposerUser).depositPaymentFromJob({value: 100})
+                await JobContract.connect(proposerUser).depositPaymentFromJob({value: 200})
                 let initialBalance = await ethers.provider.getBalance(dev1.address)
                 // eslint-disable-next-line no-undef
                 initialBalance = BigInt(initialBalance)
@@ -91,10 +95,10 @@ describe("Job Smart Contract", async () =>{
             
             })
             it("checks the money was sent to the proposer and lead dev", async () =>{
-                await JobContract.connect(proposerUser).depositPaymentFromJob({value: 100})
+                await JobContract.connect(proposerUser).depositPaymentFromJob({value: 200})
                 let initialBalance = await ethers.provider.getBalance(leadDevUser.address)
-                 // eslint-disable-next-line no-undef
-                 initialBalance = BigInt(initialBalance)
+                // eslint-disable-next-line no-undef
+                initialBalance = BigInt(initialBalance)
 
                 await JobContract.connect(proposerUser).completeJob()
 
@@ -110,6 +114,14 @@ describe("Job Smart Contract", async () =>{
             it("checks the closed job fail case", async () =>{
                 await JobContract.connect(proposerUser).completeJob()
                 await expect(JobContract.connect(leadDevUser).assignTask(dev1.address, "new task")).to.be.reverted
+
+            })
+            it("checks the dao contract received funds", async () =>{
+                await JobContract.connect(proposerUser).depositPaymentFromJob({value: 200})
+
+                await JobContract.connect(proposerUser).completeJob()
+
+                expect( await ethers.provider.getBalance(daoContract.address)).to.equal(100)
 
             })
         })
