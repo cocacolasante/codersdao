@@ -10,11 +10,13 @@ const fromWei = (num) => ethers.utils.formatEther(num)
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
+const nullAddress = "0x0000000000000000000000000000000000000000"
+
 // eslint-disable-next-line no-undef
 const halfSupply = (BigInt(10000000000000000000000000) / BigInt(2))
 
 describe("Coders DAO", () =>{
-    let CodersNFTContract, deployer, user1, user2, user3
+    let CodersNFTContract, deployer, user1, user2, user3, user4, user5
     const whiteListPrice = toWeiStr(1)
 
 
@@ -31,6 +33,8 @@ describe("Coders DAO", () =>{
         user1 = accounts[1]
         user2 = accounts[2]
         user3 = accounts[3]
+        user4 = accounts[4]
+        user5 = accounts[5]
     })
     it("checks the contract name and symbol", async () =>{
         expect(await CodersNFTContract.name()).to.equal("Coders DAO NFT")
@@ -97,6 +101,7 @@ describe("Coders DAO", () =>{
                 expect(await CodersNFTContract.tokenURI(1)).to.equal("ipfs/1.json")
             })
             
+            
         })
 
         
@@ -138,6 +143,11 @@ describe("Coders DAO", () =>{
             await CodersNFTContract.connect(user2).burn(2)
             expect(await CodersNFTContract.balanceOf(user2.address)).to.equal(2)
         })
+        it("checks the nft transfer function", async () =>{
+            await CodersNFTContract.connect(user2).transferFrom(user2.address, user3.address, 2)
+            expect( await CodersNFTContract.ownerOf(2)).to.equal(user3.address);
+        })
+        
 
         describe("ERC20 Token", () =>{
             let CodersCrypto
@@ -304,6 +314,8 @@ describe("Coders DAO", () =>{
                     await DAOContract.connect(deployer).setupStakeholder(user1.address)
                     await DAOContract.connect(deployer).setupStakeholder(user2.address)
                     await DAOContract.connect(deployer).setupStakeholder(deployer.address)
+                    await DAOContract.connect(deployer).setupContributor(user4.address)
+                    await DAOContract.connect(deployer).setupContributor(user5.address)
                     await DAOContract.connect(user1).createProposal("Build an NFT project")
                     await DAOContract.connect(user2).voteForProposal(1)
                     proposalStruct = await DAOContract.allProposals(1)
@@ -352,6 +364,25 @@ describe("Coders DAO", () =>{
                     await DAOContract.connect(deployer).createJob(1, 100, 86400)
                     assert(await DAOContract.jobsMap(1))
 
+                })
+                it("checks the remove stakeholder function", async () =>{
+                    await DAOContract.connect(deployer).removeStakeholder(user2.address)
+                    expect(await DAOContract.isStakeholder(user2.address)).to.equal(false)
+
+                    expect(await DAOContract.stakeHolders(1)).to.equal(nullAddress)
+                    expect(await DAOContract.stakeHolders(0)).to.equal(user1.address)
+                    expect(await DAOContract.stakeHolders(2)).to.equal(deployer.address)
+                    
+                    
+                })
+                it("checks the remove contributor function", async () =>{
+                    await DAOContract.connect(deployer).removeContributor(user4.address)
+                    expect(await DAOContract.isContributor(user4.address)).to.equal(false)
+
+                    expect(await DAOContract.contributors(0)).to.equal(nullAddress)
+                    expect(await DAOContract.contributors(1)).to.equal(user5.address)
+                    
+                    
                 })
             })
         })

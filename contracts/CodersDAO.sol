@@ -75,10 +75,35 @@ contract CodersDAO is ReentrancyGuard, AccessControl{
         isStakeholder[account] = true;
 
     }
+    function removeStakeholder(address account) public onlyAdmin{    
+        for(uint i; i < stakeHolders.length -1; i ++){
+            if(stakeHolders[i] == account){
+                stakeHolders[i] = stakeHolders[i+1];
+
+                delete stakeHolders[i];
+                isStakeholder[account] = false;
+
+            }
+        } 
+
+    }
 
     function setupContributor(address account) public onlyAdmin{     
         contributors.push(account);
         isContributor[account] = true;
+
+    }
+
+    function removeContributor(address account) public onlyAdmin{    
+        for(uint i; i < contributors.length -1; i ++){
+            if(contributors[i] == account){
+                contributors[i] = contributors[i+1];
+                
+                delete contributors[i];
+                isContributor[account] = false;
+
+            }
+        } 
 
     }
     
