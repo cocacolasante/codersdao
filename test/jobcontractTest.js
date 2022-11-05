@@ -2,7 +2,7 @@ const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
 describe("Job Smart Contract", async () =>{
-    let JobContract, deployer, proposerUser, leadDevUser, dev1, dev2, daoContract
+    let JobContract, deployer, proposerUser, leadDevUser, dev1, dev2, daoContract, user1, user2, user3, user4
     beforeEach(async () => {
         const accounts = await ethers.getSigners();
 
@@ -11,6 +11,11 @@ describe("Job Smart Contract", async () =>{
         leadDevUser = accounts[2]
         dev1 = accounts[3]
         dev2 = accounts[4]
+        user1 = accounts[5]
+        user2 = accounts[6]
+        user3 = accounts[7]
+        user4 = accounts[8]
+        
 
         const daoContractFactory = await ethers.getContractFactory("CodersDAO")
         daoContract = await daoContractFactory.deploy()
@@ -123,6 +128,38 @@ describe("Job Smart Contract", async () =>{
 
                 expect( await ethers.provider.getBalance(daoContract.address)).to.equal(100)
 
+            })
+            it("checks the dao payment is sent out equally", async () =>{
+                // set up the stakeholders
+                await daoContract.connect(deployer).setupStakeholder(user1.address)
+                await daoContract.connect(deployer).setupStakeholder(user2.address)
+                await daoContract.connect(deployer).setupStakeholder(deployer.address)
+                // set up the contributor accounts
+                await daoContract.connect(deployer).setupContributor(dev1.address)
+                await daoContract.connect(deployer).setupContributor(dev2.address)
+
+                let initialBalance = await ethers.provider.getBalance(user2.address)
+                // eslint-disable-next-line no-undef
+                initialBalance = BigInt(initialBalance)
+
+                await JobContract.connect(proposerUser).depositPaymentFromJob({value: 200})
+
+                await JobContract.connect(proposerUser).completeJob()
+
+                await daoContract.connect(deployer).sendDaoPayout()
+
+                // eslint-disable-next-line no-undef
+                expect(await ethers.provider.getBalance(user2.address)).to.equal(initialBalance + BigInt(16))
+
+                
+
+            })
+            it("checks the fail cases for dao payment function", async () =>{
+                await expect(daoContract.connect(deployer).sendDaoPayout()).to.be.reverted;
+
+                await JobContract.connect(proposerUser).depositPaymentFromJob({value: 200})
+
+                await expect(daoContract.connect(deployer).sendDaoPayout()).to.be.reverted;
             })
         })
 

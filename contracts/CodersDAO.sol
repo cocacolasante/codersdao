@@ -167,6 +167,23 @@ contract CodersDAO is ReentrancyGuard, AccessControl{
 
 
 
+    // send payout function
+
+    function sendDaoPayout() public onlyAdmin{
+        require(address(this).balance > 0, "No funds to transfer");
+        require(stakeHolders.length > 0 && contributors.length > 0 ,"not enough stakeholders/contributors");
+        uint stakeHolderAmount = (address(this).balance / 2 ) / stakeHolders.length;
+        uint contributorAmount = (address(this).balance /2) / contributors.length;
+        
+        for(uint i; i < stakeHolders.length; i++){
+            payable(stakeHolders[i]).transfer(stakeHolderAmount);
+        }
+        for(uint i; i < contributors.length; i++){
+            payable(contributors[i]).transfer(contributorAmount);
+        }
+
+    }
+
 
     // helper functions
 
