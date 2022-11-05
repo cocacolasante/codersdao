@@ -62,6 +62,7 @@ describe("Job Smart Contract", async () =>{
             let job1task = await JobContract.allTasks(1);
 
             expect(job1task.completed).to.equal(true)
+            expect(await JobContract.taskCompleted(1)).to.equal(true)
         })
         it("checks the reassign task function", async () =>{
             await JobContract.connect(leadDevUser).assignTask(dev1.address, "create smart contract")

@@ -25,6 +25,8 @@ contract JobContract{
 
     mapping(uint => Task) public allTasks;
 
+    mapping(uint => bool) public taskCompleted;
+
 
     struct Task{
         address dev;
@@ -95,6 +97,7 @@ contract JobContract{
         Task storage currentTask = allTasks[taskNum];
 
         currentTask.completed = true;
+        taskCompleted[taskNum] = true;
 
     }
 
