@@ -152,6 +152,860 @@
             "helmet": "full head with forehead",
             "glasses": "none"
         }
+    },
+    {
+        "NFT Number": 12,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/12.png", 
+        "name": "CBP12",
+        "attributes": {
+            "eyes": "dark",
+            "mouth": "open with teeth",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head with forehead",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 13,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/13.png", 
+        "name": "CBP13",
+        "attributes": {
+            "eyes": "multi",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head with forehead",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 14,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/14.png", 
+        "name": "CBP14",
+        "attributes": {
+            "eyes": "multi",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "bald",
+            "helmet": "full head",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 15,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/15.png", 
+        "name": "CBP15",
+        "attributes": {
+            "eyes": "dark",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "bald",
+            "helmet": "full head with forehead",
+            "glasses": "reading glasses"
+        }
+    },
+    {
+        "NFT Number": 16,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/16.png", 
+        "name": "CBP16",
+        "attributes": {
+            "eyes": "yellow red",
+            "mouth": "open with teeth",
+            "background": "white",
+            "hair": "bald",
+            "helmet": "full head",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 17,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/17.png", 
+        "name": "CBP17",
+        "attributes": {
+            "eyes": "blue",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "old",
+            "helmet": "full head",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 18,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/18.png", 
+        "name": "CBP18",
+        "attributes": {
+            "eyes": "covered",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "old",
+            "helmet": "full head with forehead",
+            "glasses": "tech glasses"
+        }
+    },
+    {
+        "NFT Number": 19,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/19.png", 
+        "name": "CBP19",
+        "attributes": {
+            "eyes": "yellow red",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "short",
+            "helmet": "full head",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 20,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/20.png", 
+        "name": "CBP20",
+        "attributes": {
+            "eyes": "blue",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered forehead",
+            "helmet": "full head with forehead",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 21,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/21.png", 
+        "name": "CBP21",
+        "attributes": {
+            "eyes": "multi",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "short",
+            "helmet": "ears only",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 22,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/22.png", 
+        "name": "CBP22",
+        "attributes": {
+            "eyes": "yellow red",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "short with beard",
+            "helmet": "full head",
+            "glasses": "tech glasses"
+        }
+    },
+    {
+        "NFT Number": 23,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/23.png", 
+        "name": "CBP23",
+        "attributes": {
+            "eyes": "blank",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "bald",
+            "helmet": "full head",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 24,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/24.png", 
+        "name": "CBP24",
+        "attributes": {
+            "eyes": "blank",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered forehead",
+            "helmet": "full head with forehead",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 25,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/25.png", 
+        "name": "CBP25",
+        "attributes": {
+            "eyes": "blank",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "bald",
+            "helmet": "full head with forehead",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 26,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/26.png", 
+        "name": "CBP26",
+        "attributes": {
+            "eyes": "blue",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head with forehead",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 27,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/27.png", 
+        "name": "CBP27",
+        "attributes": {
+            "eyes": "crooked",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head with forehead",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 28,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/28.png", 
+        "name": "CBP28",
+        "attributes": {
+            "eyes": "multi",
+            "mouth": "open with teeth",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head with forehead",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 29,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/29.png", 
+        "name": "CBP29",
+        "attributes": {
+            "eyes": "covered",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head with forehead",
+            "glasses": "reading glasses"
+        }
+    },
+    {
+        "NFT Number": 30,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/30.png", 
+        "name": "CBP30",
+        "attributes": {
+            "eyes": "covered",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered with beard",
+            "helmet": "full head with forehead",
+            "glasses": "reading glasses"
+        }
+    },
+    {
+        "NFT Number": 31,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/31.png", 
+        "name": "CBP31",
+        "attributes": {
+            "eyes": "green",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head with forehead",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 32,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/32.png", 
+        "name": "CBP32",
+        "attributes": {
+            "eyes": "covered",
+            "mouth": "open with teeth",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head with forehead",
+            "glasses": "tech glasses"
+        }
+    },
+    {
+        "NFT Number": 33,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/33.png", 
+        "name": "CBP33",
+        "attributes": {
+            "eyes": "green",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head with forehead",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 34,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/34.png", 
+        "name": "CBP34",
+        "attributes": {
+            "eyes": "blurry",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head with forehead",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 35,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/35.png", 
+        "name": "CBP35",
+        "attributes": {
+            "eyes": "covered",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered with beard",
+            "helmet": "full head with forehead",
+            "glasses": "reading glasses"
+        }
+    },
+    {
+        "NFT Number": 36,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/36.png", 
+        "name": "CBP36",
+        "attributes": {
+            "eyes": "yellow red",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 37,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/37.png", 
+        "name": "CBP37",
+        "attributes": {
+            "eyes": "covered",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head with forehead",
+            "glasses": "tech glasses"
+        }
+    },
+    {
+        "NFT Number": 38,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/38.png", 
+        "name": "CBP38",
+        "attributes": {
+            "eyes": "covered",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head with forehead",
+            "glasses": "tech glasses"
+        }
+    },
+    {
+        "NFT Number": 39,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/39.png", 
+        "name": "CBP39",
+        "attributes": {
+            "eyes": "blank",
+            "mouth": "open with teeth",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head with forehead",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 40,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/40.png", 
+        "name": "CBP40",
+        "attributes": {
+            "eyes": "covered",
+            "mouth": "smirk",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head with forehead",
+            "glasses": "tech glasses"
+        }
+    },
+    {
+        "NFT Number": 41,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/41.png", 
+        "name": "CBP41",
+        "attributes": {
+            "eyes": "green",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head",
+            "glasses": "half glasses"
+        }
+    },
+    {
+        "NFT Number": 42,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/42.png", 
+        "name": "CBP42",
+        "attributes": {
+            "eyes": "green",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head with forehead",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 43,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/43.png", 
+        "name": "CBP43",
+        "attributes": {
+            "eyes": "green",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered with beard",
+            "helmet": "full head",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 44,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/44.png", 
+        "name": "CBP44",
+        "attributes": {
+            "eyes": "green",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 45,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/45.png", 
+        "name": "CBP45",
+        "attributes": {
+            "eyes": "blue",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "short",
+            "helmet": "full head",
+            "glasses": "face cover"
+        }
+    },
+    {
+        "NFT Number": 46,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/46.png", 
+        "name": "CBP46",
+        "attributes": {
+            "eyes": "blue",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head",
+            "glasses": "face cover"
+        }
+    },
+    {
+        "NFT Number": 47,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/47.png", 
+        "name": "CBP47",
+        "attributes": {
+            "eyes": "blue",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head with forehead",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 48,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/48.png", 
+        "name": "CBP48",
+        "attributes": {
+            "eyes": "yellow red",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 49,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/49.png", 
+        "name": "CBP49",
+        "attributes": {
+            "eyes": "blue",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head with forehead",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 50,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/50.png", 
+        "name": "CBP50",
+        "attributes": {
+            "eyes": "covered",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "short",
+            "helmet": "full head",
+            "glasses": "tech glasses"
+        }
+    },
+    {
+        "NFT Number": 51,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/51.png", 
+        "name": "CBP51",
+        "attributes": {
+            "eyes": "blue",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head with forehead",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 52,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/52.png", 
+        "name": "CBP52",
+        "attributes": {
+            "eyes": "green",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 53,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/53.png", 
+        "name": "CBP53",
+        "attributes": {
+            "eyes": "covered",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered with beard",
+            "helmet": "full head",
+            "glasses": "tech glasses"
+        }
+    },
+    {
+        "NFT Number": 54,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/54.png", 
+        "name": "CBP54",
+        "attributes": {
+            "eyes": "green",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head with forehead",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 55,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/55.png", 
+        "name": "CBP55",
+        "attributes": {
+            "eyes": "covered",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head with forehead",
+            "glasses": "tech glasses"
+        }
+    },
+    {
+        "NFT Number": 56,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/56.png", 
+        "name": "CBP56",
+        "attributes": {
+            "eyes": "blue",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head with forehead",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 57,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/57.png", 
+        "name": "CBP57",
+        "attributes": {
+            "eyes": "blank",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head with forehead",
+            "glasses": "tech glasses"
+        }
+    },
+    {
+        "NFT Number": 58,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/58.png", 
+        "name": "CBP58",
+        "attributes": {
+            "eyes": "green",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "bald",
+            "helmet": "full head",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 59,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/59.png", 
+        "name": "CBP59",
+        "attributes": {
+            "eyes": "green",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 60,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/60.png", 
+        "name": "CBP60",
+        "attributes": {
+            "eyes": "yellow red",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 61,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/61.png", 
+        "name": "CBP61",
+        "attributes": {
+            "eyes": "covered",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head with forehead",
+            "glasses": "face cover"
+        }
+    },
+    {
+        "NFT Number": 62,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/62.png", 
+        "name": "CBP62",
+        "attributes": {
+            "eyes": "covered",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head with forehead",
+            "glasses": "tech glasses"
+        }
+    },
+    {
+        "NFT Number": 63,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/63.png", 
+        "name": "CBP63",
+        "attributes": {
+            "eyes": "blank",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 64,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/64.png", 
+        "name": "CBP64",
+        "attributes": {
+            "eyes": "blue",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head with forehead",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 65,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/65.png", 
+        "name": "CBP65",
+        "attributes": {
+            "eyes": "blue",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head with forehead",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 66,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/66.png", 
+        "name": "CBP66",
+        "attributes": {
+            "eyes": "blurry",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head",
+            "glasses": "tech glasses"
+        }
+    },
+    {
+        "NFT Number": 67,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/67.png", 
+        "name": "CBP67",
+        "attributes": {
+            "eyes": "yellow red",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 68,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/68.png", 
+        "name": "CBP68",
+        "attributes": {
+            "eyes": "covered",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "bald",
+            "helmet": "full head with forehead",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 69,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/69.png", 
+        "name": "CBP69",
+        "attributes": {
+            "eyes": "green",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head with forehead",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 70,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/70.png", 
+        "name": "CBP70",
+        "attributes": {
+            "eyes": "dark",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head with forehead",
+            "glasses": "none"
+        }
+    },
+    {
+        "NFT Number": 71,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/71.png", 
+        "name": "CBP71",
+        "attributes": {
+            "eyes": "covered",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head",
+            "glasses": "reading glasses"
+        }
+    },
+    {
+        "NFT Number": 71,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/71.png", 
+        "name": "CBP71",
+        "attributes": {
+            "eyes": "covered",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head",
+            "glasses": "reading glasses"
+        }
     }
     
 ]
