@@ -12,6 +12,9 @@ contract CodersNFT is ERC721, ERC721URIStorage {
     Counters.Counter public _tokenIdCounter;
 
     address payable public admin;
+    address payable public feeAccount;
+
+    uint public tokenLimit = 339;
 
     uint256 public mintPrice;
     uint public mintLimit;
@@ -49,6 +52,7 @@ contract CodersNFT is ERC721, ERC721URIStorage {
 
     constructor() ERC721("Coders DAO NFT", "CDN"){
         admin = payable(msg.sender);
+        feeAccount = payable(msg.sender);
     }
 
     // whitelist functions
@@ -101,7 +105,7 @@ contract CodersNFT is ERC721, ERC721URIStorage {
     // regular mint functions
     function mint(address to) payable public liveContract {
         require(msg.value >= mintPrice, "Please pay full minting fee");
-        require(_tokenIdCounter.current() < mintLimit, "max nfts minted");
+        require(_tokenIdCounter.current() < tokenLimit, "max nfts minted");
 
         // transfer mint price to admin
         admin.transfer(msg.value);
@@ -137,6 +141,7 @@ contract CodersNFT is ERC721, ERC721URIStorage {
         mintPrice = newWhitelistPrice;
     }
 
+
     // overrides required by solidity
 
     function _burn(uint256 tokenId) internal override(ERC721, ERC721URIStorage) liveContract {
@@ -149,6 +154,8 @@ contract CodersNFT is ERC721, ERC721URIStorage {
         require(owner == msg.sender, "not owner of token");
         _burn(tokenId);
     }
+
+    function calculateFee() public view returns(uint){}
 
      function tokenURI(uint256 tokenId)
         public

@@ -6,6 +6,7 @@ import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
 import "./JobContract.sol";
 
+
 import "hardhat/console.sol";
 
 contract CodersDAO is ReentrancyGuard, AccessControl{
@@ -88,7 +89,7 @@ contract CodersDAO is ReentrancyGuard, AccessControl{
 
     }
 
-    function setupContributor(address account) public onlyAdmin{     
+    function setupContributor(address account) public onlyAdmin{   
         contributors.push(account);
         isContributor[account] = true;
 
@@ -104,6 +105,11 @@ contract CodersDAO is ReentrancyGuard, AccessControl{
 
             }
         } 
+
+    }
+
+
+    function getCurrentMembers() public onlyAdmin{
 
     }
     
