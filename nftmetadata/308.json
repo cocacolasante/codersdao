@@ -1,0 +1,14 @@
+{
+    "NFT Number": 308,
+    "description": "Cyberpunk Coders from the future", 
+    "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/308.png", 
+    "name": "CBP308",
+    "attributes": {
+        "eyes": "dark",
+        "mouth": "closed",
+        "background": "white",
+        "hair": "bald",
+        "helmet": "full head with chin",
+        "glasses": "none"
+    }
+}

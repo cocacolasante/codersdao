@@ -1,0 +1,14 @@
+{
+    "NFT Number": 259,
+    "description": "Cyberpunk Coders from the future", 
+    "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/259.png", 
+    "name": "CBP259",
+    "attributes": {
+        "eyes": "green",
+        "mouth": "closed",
+        "background": "white",
+        "hair": "bald",
+        "helmet": "full head with forehead",
+        "glasses": "face cover"
+    }
+}

@@ -1,0 +1,15 @@
+
+    {
+        "NFT Number": 185,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/185.png", 
+        "name": "CBP185",
+        "attributes": {
+            "eyes": "yellow",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "short",
+            "helmet": "full head",
+            "glasses": "face cover"
+        }
+    }

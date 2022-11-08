@@ -1,0 +1,14 @@
+{
+    "NFT Number": 50,
+    "description": "Cyberpunk Coders from the future", 
+    "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/50.png", 
+    "name": "CBP50",
+    "attributes": {
+        "eyes": "covered",
+        "mouth": "closed",
+        "background": "white",
+        "hair": "short",
+        "helmet": "full head",
+        "glasses": "tech glasses"
+    }
+}

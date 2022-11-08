@@ -1,0 +1,14 @@
+{
+    "NFT Number": 166,
+    "description": "Cyberpunk Coders from the future", 
+    "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/166.png", 
+    "name": "CBP166",
+    "attributes": {
+        "eyes": "blue",
+        "mouth": "closed",
+        "background": "white",
+        "hair": "covered",
+        "helmet": "full head with forehead",
+        "glasses": "none"
+    }
+}

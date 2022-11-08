@@ -1,0 +1,14 @@
+{
+    "NFT Number": 102,
+    "description": "Cyberpunk Coders from the future", 
+    "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/102.png", 
+    "name": "CBP102",
+    "attributes": {
+        "eyes": "green",
+        "mouth": "open with teeth",
+        "background": "white",
+        "hair": "covered",
+        "helmet": "full head with chin",
+        "glasses": "none"
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "NFT Number": 140,
+    "description": "Cyberpunk Coders from the future", 
+    "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/140.png", 
+    "name": "CBP140",
+    "attributes": {
+        "eyes": "covered",
+        "mouth": "closed",
+        "background": "white",
+        "hair": "covered",
+        "helmet": "full head with chin",
+        "glasses": "face cover"
+    }
+}

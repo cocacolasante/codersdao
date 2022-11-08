@@ -1,0 +1,14 @@
+{
+    "NFT Number": 41,
+    "description": "Cyberpunk Coders from the future", 
+    "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/41.png", 
+    "name": "CBP41",
+    "attributes": {
+        "eyes": "green",
+        "mouth": "closed",
+        "background": "white",
+        "hair": "covered",
+        "helmet": "full head",
+        "glasses": "half glasses"
+    }
+}

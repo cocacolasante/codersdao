@@ -1,0 +1,15 @@
+
+    {
+        "NFT Number": 219,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/219.png", 
+        "name": "CBP219",
+        "attributes": {
+            "eyes": "covered",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "bald",
+            "helmet": "full head",
+            "glasses": "face cover"
+        }
+    }

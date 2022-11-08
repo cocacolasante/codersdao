@@ -1,0 +1,14 @@
+{
+    "NFT Number": 290,
+    "description": "Cyberpunk Coders from the future", 
+    "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/290.png", 
+    "name": "CBP290",
+    "attributes": {
+        "eyes": "blue",
+        "mouth": "closed",
+        "background": "white",
+        "hair": "short",
+        "helmet": "full head",
+        "glasses": "none"
+    }
+}

@@ -1,0 +1,15 @@
+
+    {
+        "NFT Number": 306,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/306.png", 
+        "name": "CBP306",
+        "attributes": {
+            "eyes": "purple",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head",
+            "glasses": "none"
+        }
+    }

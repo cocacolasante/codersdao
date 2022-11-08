@@ -1,0 +1,14 @@
+{
+    "NFT Number": 170,
+    "description": "Cyberpunk Coders from the future", 
+    "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/170.png", 
+    "name": "CBP170",
+    "attributes": {
+        "eyes": "covered",
+        "mouth": "closed",
+        "background": "white",
+        "hair": "covered",
+        "helmet": "full head",
+        "glasses": "reading glasses"
+    }
+}

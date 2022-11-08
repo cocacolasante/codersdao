@@ -1,0 +1,14 @@
+{
+    "NFT Number": 112,
+    "description": "Cyberpunk Coders from the future", 
+    "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/112.png", 
+    "name": "CBP112",
+    "attributes": {
+        "eyes": "blue",
+        "mouth": "closed",
+        "background": "white",
+        "hair": "covered",
+        "helmet": "full head with chin",
+        "glasses": "none"
+    }
+}

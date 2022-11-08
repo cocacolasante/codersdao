@@ -98,7 +98,7 @@ describe("Coders DAO", () =>{
                 await expect(CodersNFTContract.connect(user1).whitelistMint(user1.address, {value: whiteListPrice})).to.be.reverted
             })
             it("checks the token uri", async () =>{
-                expect(await CodersNFTContract.tokenURI(1)).to.equal("ipfs/1.json")
+                expect(await CodersNFTContract.tokenURI(1)).to.equal("https://ipfs.io/ipfs/Qmddn6X5c1FaCPBRHuxryfgFa3PP5eFfPwJK1cqCHZYied/1.json")
             })
             
             
@@ -127,7 +127,7 @@ describe("Coders DAO", () =>{
             expect(await CodersNFTContract._tokenIdCounter()).to.equal(3)
         })
         it("checks the token uri", async () =>{
-            expect(await CodersNFTContract.tokenURI(3)).to.equal("ipfs/3.json")
+            expect(await CodersNFTContract.tokenURI(3)).to.equal("https://ipfs.io/ipfs/Qmddn6X5c1FaCPBRHuxryfgFa3PP5eFfPwJK1cqCHZYied/3.json")
         })
         it("checks the admin received the minting fee", async () =>{
             // eslint-disable-next-line no-undef

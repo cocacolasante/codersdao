@@ -1,0 +1,15 @@
+ 
+    {
+        "NFT Number": 311,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/311.png", 
+        "name": "CBP311",
+        "attributes": {
+            "eyes": "yellow red",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "short",
+            "helmet": "full head",
+            "glasses": "none"
+        }
+    }

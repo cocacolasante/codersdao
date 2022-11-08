@@ -1,0 +1,14 @@
+{
+    "NFT Number": 172,
+    "description": "Cyberpunk Coders from the future", 
+    "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/172.png", 
+    "name": "CBP172",
+    "attributes": {
+        "eyes": "yellow",
+        "mouth": "closed",
+        "background": "white",
+        "hair": "short with beard",
+        "helmet": "full head",
+        "glasses": "none"
+    }
+}

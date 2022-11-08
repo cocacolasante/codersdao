@@ -1,0 +1,15 @@
+  
+    {
+        "NFT Number": 273,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/273.png", 
+        "name": "CBP273",
+        "attributes": {
+            "eyes": "covered",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "bald",
+            "helmet": "full head",
+            "glasses": "tech glasses"
+        }
+    }

@@ -1,0 +1,15 @@
+
+    {
+        "NFT Number": 217,
+        "description": "Cyberpunk Coders from the future", 
+        "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/217.png", 
+        "name": "CBP217",
+        "attributes": {
+            "eyes": "blue",
+            "mouth": "closed",
+            "background": "white",
+            "hair": "covered",
+            "helmet": "full head",
+            "glasses": "none"
+        }
+    }

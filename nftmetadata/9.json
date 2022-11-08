@@ -1,0 +1,14 @@
+{
+    "NFT Number": 9,
+    "description": "Cyberpunk Coders from the future", 
+    "image": "https://ipfs.io/ipfs/QmSo7kojLkR9dgTndHiwMQhdQpev7gt8WeGQYFYUwaV6du/9.png", 
+    "name": "CBP9",
+    "attributes": {
+        "eyes": "covered",
+        "mouth": "open with cigar",
+        "background": "white",
+        "hair": "none",
+        "helmet": "full head with chin",
+        "glasses": "full shades"
+    }
+}
