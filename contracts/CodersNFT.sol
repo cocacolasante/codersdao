@@ -21,7 +21,7 @@ contract CodersNFT is ERC721, ERC721URIStorage {
 
     bool public isContractLive;
 
-    string private baseURI = "https://ipfs.io/ipfs/Qmddn6X5c1FaCPBRHuxryfgFa3PP5eFfPwJK1cqCHZYied/";
+    string private baseURI = "https://ipfs.io/ipfs/QmVXjMCb3QLssDJ6oq6n77vR7zPPTmNaj19n21uq2N6JSi/";
 
     // white list
     address[] public whitelistAddresses;
