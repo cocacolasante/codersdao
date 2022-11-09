@@ -53,6 +53,8 @@ contract CodersNFT is ERC721, ERC721URIStorage {
     constructor() ERC721("Coders DAO NFT", "CDN"){
         admin = payable(msg.sender);
         feeAccount = payable(msg.sender);
+        isContractLive = true;
+        mintPrice = 1000000000000000000;
     }
 
     // whitelist functions
@@ -163,5 +165,9 @@ contract CodersNFT is ERC721, ERC721URIStorage {
         returns (string memory)
     {
         return super.tokenURI(tokenId);
+    }
+
+    function returnTokenCount() public view returns(uint){
+        return _tokenIdCounter.current();
     }
 }
