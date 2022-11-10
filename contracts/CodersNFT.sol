@@ -30,6 +30,9 @@ contract CodersNFT is ERC721, ERC721URIStorage {
     uint public whitelistMintPrice;
     bool public isWLMintOn = true;
 
+    
+    uint public royaltyFee;
+
     // modifiers
     modifier onlyAdmin {
         require(msg.sender == admin, "only admin can call function");
@@ -166,6 +169,30 @@ contract CodersNFT is ERC721, ERC721URIStorage {
     {
         return super.tokenURI(tokenId);
     }
+
+    function transferFrom(
+        address from,
+        address to,
+        uint256 tokenId
+    ) public virtual override {
+        //solhint-disable-next-line max-line-length
+        require(_isApprovedOrOwner(_msgSender(), tokenId), "ERC721: caller is not token owner nor approved");
+
+        _transfer(from, to, tokenId);
+    }
+
+
+    function _payRoyalty(uint _royalty) internal {
+        payable(admin).transfer(_royalty);
+        
+    }
+
+
+
+
+
+
+
 
     function returnTokenCount() public view returns(uint){
         return _tokenIdCounter.current();
