@@ -105,7 +105,8 @@ function App() {
         
         setMintCount(mintNumber)
 
-        const mintCost = await CodersNFT.mintPrice()
+        let mintCost = await CodersNFT.mintPrice()
+        mintCost = mintCost.toString()
         setMintFee(mintCost)
 
 
@@ -134,6 +135,7 @@ function App() {
         <div className='minting-inputs-div' >
           <h3>{mintCount} out of 339 Minted</h3>
           <h6>Mint Yours Today!!</h6>
+          <p>Current Mint Price: {mintFee}</p>
           <button onClick={mintNft} className='mint-btn'>Mint Today!</button>
         </div>
       </div>
